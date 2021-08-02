@@ -4,10 +4,11 @@ import useTimer from "../../hooks/useTimer";
 export interface Props {}
 
 const Clock: React.FC<Props> = (props: Props) => {
-  const { min, sec } = useTimer();
   /*
    * state method
    */
+
+  const { min, sec, restart } = useTimer();
 
   /*
    * custom hook
@@ -30,9 +31,12 @@ const Clock: React.FC<Props> = (props: Props) => {
    */
 
   return (
-    <div>
-      {min} : {sec}
-    </div>
+    <>
+      <div>
+        {min} : {sec}
+      </div>
+      <button onClick={restart}>(재)시작</button>
+    </>
   );
 };
 
