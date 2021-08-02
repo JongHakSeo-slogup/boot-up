@@ -8,7 +8,7 @@ interface Time {
 }
 
 export default function useTimer(onTimeEnd?:()=>void): Time{
-    const [{min, sec}, setTime] = useState({min: 1, sec: 0});
+    const [{min, sec}, setTime] = useState({min: 3, sec: 0});
 
     const startTimer = useCallback(() => {
         const timer: NodeJS.Timeout = setInterval(() => {
