@@ -11,9 +11,10 @@ const Clock: React.FC<Props> = (props: Props) => {
    * state method
    */
   const [end, setEnd] = React.useState(false);
+  const [reset, setReset] = React.useState(false);
 
 
-  const { min, sec } = useTimer(end);
+  const { min, sec } = useTimer(end, reset);
 
 
 
@@ -25,7 +26,19 @@ const Clock: React.FC<Props> = (props: Props) => {
   /*
    * private method
    */
+    const startTimer = () => {
+        setEnd(false);
+        setReset(false);
+    }
 
+    const stopTimer = () => {
+        setEnd(true);
+    }
+
+    const resetTimer = () => {
+        setEnd(true);
+        setReset(true);
+    }
 
   /*
    * effect cycle
@@ -45,8 +58,9 @@ const Clock: React.FC<Props> = (props: Props) => {
     <div style={{width:'300px'}}>
       {min} : {sec}
         <ButtonBox>
-            <Button width='200px' height='50px' margin='5px 0px' onClick={()=>setEnd(false)}>start</Button>
-            <Button width='200px' height='50px' margin='5px 0px' onClick={()=>setEnd(true)}>stop</Button>
+            <Button width='200px' height='50px' margin='5px 0px' onClick={startTimer}>start</Button>
+            <Button width='200px' height='50px' margin='5px 0px' onClick={stopTimer}>stop</Button>
+            <Button width='200px' height='50px' margin='5px 0px' onClick={resetTimer}>reset</Button>
         </ButtonBox>
     </div>
   );

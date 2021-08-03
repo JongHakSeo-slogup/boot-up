@@ -7,7 +7,7 @@ export interface Time{
 
 
 
-export default function useTimer(end?:boolean): Time{
+export default function useTimer(end:boolean, reset = false): Time{
 
     const [min, setMin] = React.useState(0);
     const [sec, setSec] = React.useState(0);
@@ -24,11 +24,16 @@ export default function useTimer(end?:boolean): Time{
             }
         }
         let id = setInterval(timer, 1000);
+        if(reset){
+            setSec(0);
+            setMin(0);
+            return clearInterval(id);
+        }
         if (end){
             return clearInterval(id);
         }
         return () => clearInterval(id);
-    },[end, min, sec]);
+    },[reset, end, min, sec]);
 
 
 
