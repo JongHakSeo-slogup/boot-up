@@ -7,6 +7,7 @@ import store from "./redux/store";
 import {getSession} from "./apis/account";
 import AppLayout from "./components/AppLayout";
 import Tutorial from "./components/Tutorial";
+import Login from "./components/Login";
 
 function App() {
   const [isFirstVisited, setIsFisrtVisited] = useState(true);
@@ -24,7 +25,7 @@ function App() {
               {
                 isFirstVisited
                   ? <Tutorial imageName="image_iPhone.png" onClick={() => setIsFisrtVisited(false)} />
-                    : <div>hello</div>
+                    : <Login/>
               }
             </AppLayout>
           </header>

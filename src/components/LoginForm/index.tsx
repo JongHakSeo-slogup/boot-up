@@ -1,5 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
+import styles from "./style";
+import TextInput from "../TextInput";
+import Button from "../Button";
 
 export interface LoginFormInfo {
   id: string;
@@ -44,7 +47,13 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * render method
    */
 
-  return <div />;
+  return (
+      <styles.LoginFormLayout>
+          <TextInput type="text" placeholder="이메일" />
+          <TextInput type="text" placeholder="비밀번호" />
+          <Button text="로그인" isFull />
+      </styles.LoginFormLayout>
+  );
 };
 
 LoginForm.defaultProps = {};

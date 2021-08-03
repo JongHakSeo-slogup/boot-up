@@ -88,6 +88,11 @@ body {
   ${bodyStyle}
 }
 
+input,
+button {
+  font-size: 16px;
+}
+
 `;
 
 export default GlobalStyles;

@@ -5,12 +5,12 @@ interface ButtonProps {
     isFull: boolean,
     disable: boolean,
     text: string,
-    onClick: ()=>void,
+    onClick?: ()=>void,
 };
 
-function Button({isFull, disable, text, onClick}: ButtonProps) {
+function Button({isFull, disable, text, ...rest}: ButtonProps) {
     return(
-        <styles.ButtonLayout isFull={isFull} disable={disable} onClick={onClick} >{text}</styles.ButtonLayout>
+        <styles.ButtonLayout isFull={isFull} disable={disable} {...rest} >{text}</styles.ButtonLayout>
     )
 };
 
