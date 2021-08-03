@@ -22,7 +22,7 @@ interface RequestParams {
   queryParams?: object | null;
   body?: FormData | unknown | string;
   headers?: object;
-  isMultipart: boolean;
+  isMultipart?: boolean;
 }
 
 export const request = (params: RequestParams) => {
