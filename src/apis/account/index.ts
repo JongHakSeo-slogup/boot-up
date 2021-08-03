@@ -1,6 +1,6 @@
 import { Method, request } from "../../network/Request";
 
-const url = "20.41.102.169";
+const url = "htto://20.41.102.169";
 
 export function Login() {}
 
