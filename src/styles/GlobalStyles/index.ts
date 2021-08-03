@@ -65,7 +65,6 @@ img {
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
 }
 *,
 *::before,
