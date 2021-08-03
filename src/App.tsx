@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Tutorial from './components/Tutorial';
+import Clock from "./components/Clock";
 import { Theme } from "./styles/theme";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
@@ -12,7 +12,11 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
-          <Tutorial/>
+        <div className="App">
+          <header className="App-header">
+            <Clock />
+          </header>
+        </div>
       </ThemeProvider>
     </Provider>
   );
