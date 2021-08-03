@@ -1,5 +1,6 @@
 import React from "react";
 import useTimer from "../../hooks/useTimer";
+import { ClockTimeWrapper } from "./style";
 
 export interface Props {}
 
@@ -32,9 +33,9 @@ const Clock: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <div>
+      <ClockTimeWrapper>
         {min} : {sec}
-      </div>
+      </ClockTimeWrapper>
       <button onClick={restart}>(재)시작</button>
     </>
   );
