@@ -6,7 +6,7 @@ export const bodyStyle = css`
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   height: 100%;
   color: #262626;
   background-color: white;

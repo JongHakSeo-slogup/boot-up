@@ -62,6 +62,9 @@ export const request = (params: RequestParams) => {
     };
   }
 
+  console.log(config);
+  axiosInstance = axios.create(config);
+
   if (!!axiosInterceptor || axiosInterceptor === 0) {
     axiosInstance.interceptors.response.eject(axiosInterceptor);
   }
@@ -79,13 +82,13 @@ export const request = (params: RequestParams) => {
   );
 
   switch (method) {
-    case "get":
+    case Method.GET:
       return axiosInstance.get(baseUrl, config);
-    case "post":
+    case Method.POST:
       return axiosInstance.post(baseUrl, body, config);
-    case "put":
+    case Method.PUT:
       return axiosInstance.put(baseUrl, body, config);
-    case "delete":
+    case Method.DELETE:
       return axiosInstance.delete(baseUrl, config);
     default:
       return axiosInstance.get(baseUrl, config);
