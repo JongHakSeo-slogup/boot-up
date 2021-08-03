@@ -1,32 +1,75 @@
-import {useCallback, useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 interface Time {
-    min:number,
-    sec:number,
-    startTimer: () => NodeJS.Timeout,
-    resetTimer: () => void,
+  min: number;
+  sec: number;
+  restart: () => void;
 }
 
-export default function useTimer(onTimeEnd?:()=>void): Time{
-    const [{min, sec}, setTime] = useState({min: 3, sec: 0});
+const LIMIT = 180;
 
-    const startTimer = useCallback(() => {
-        const timer: NodeJS.Timeout = setInterval(() => {
-            if (min === 0 && sec === 0) return clearInterval(timer);
-            if (min !== 0 && sec === 0) return setTime(prevTime => ({...prevTime, min: prevTime.min - 1, sec: 59}));
-            if (sec !== 0) return setTime(prevTime => ({...prevTime, sec: prevTime.sec - 1}));
-        }, 1000);
+const DELAY = 1000;
 
-        return timer;
-    }, [min, sec]);
+export default function useTimer(onTimeEnd?: () => void): Time {
+  const [sec, setSec] = useState(0);
+  const [toggle, setToggle] = useState(false);
 
-    const resetTimer = () => setTime({min: 3, sec: 0});
+  const restart = () => {
+    setSec(LIMIT);
+    setToggle((t) => !t);
+  };
 
-    useEffect(() => {
-        const timer = startTimer();
-        return () => clearInterval(timer);
-    }, [min, sec, startTimer]);
+  useEffect(() => {
+    if (sec === 0) {
+      onTimeEnd && onTimeEnd();
+    }
+  }, [sec, onTimeEnd]);
 
-    return {min, sec, startTimer, resetTimer}
+  useEffect(() => {
+    let x: NodeJS.Timeout | null = null;
+
+    function ticking() {
+      // ! interval 1000ms
+      x = setInterval(() => {
+        setSec((p) => {
+          if (p > 0) {
+            return p - 1;
+          } else {
+            x && clearInterval(x);
+            x = null;
+            return 0;
+          }
+        });
+        console.timeEnd("tick");
+        console.time("tick");
+      }, DELAY);
+
+      // ! timeout 재귀
+      // console.time("tick");
+      // x = setTimeout(() => {
+      //   setSec((p) => {
+      //     if (p > 0) {
+      //       return p - 1;
+      //     }
+      //     clearTimeout(x);
+      //     x = null;
+      //     return 0;
+      //   });
+      //   ticking();
+      //   console.timeEnd("tick");
+      // }, DELAY);
+    }
+
+    ticking();
+
+    return () => {
+      x && clearInterval(x);
+      // x && clearTimeout(x);
+      x = null;
+    };
+  }, [toggle]);
+
+  const exposeMin = Math.floor(sec / 60);
+  const exposeSec = sec % 60;
+  return { min: exposeMin, sec: exposeSec, restart };
 }
-
