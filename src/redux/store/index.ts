@@ -1,10 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { rootReducer } from "../reducers";
+import createSagaMiddleware from 'redux-saga';
+import { createBrowserHistory } from 'history';
+import rootSaga from "../sagas";
+
+export const customHistory = createBrowserHistory();
+
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history: customHistory,
+  }
+});
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: [sagaMiddleware],
 });
+
+sagaMiddleware.run(rootSaga);
 
 export default store;
 

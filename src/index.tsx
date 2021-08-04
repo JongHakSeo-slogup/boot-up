@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
+import {customHistory} from "./redux/store";
 
 ReactDOM.render(
   // <React.StrictMode>
-    <BrowserRouter>
+    <Router history={customHistory}>
         <App />
-    </BrowserRouter>,
+    </Router>,
   // </React.StrictMode>,
   document.getElementById("root")
 );

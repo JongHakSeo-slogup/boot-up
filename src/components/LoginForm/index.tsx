@@ -4,9 +4,10 @@ import * as Yup from "yup";
 import styles from "./style";
 import TextInput from "../TextInput";
 import Button from "../Button";
-import {useSelector} from "react-redux";
-import {UserState} from "../../redux/slices/user";
+import {useDispatch, useSelector} from "react-redux";
+import {userSlice, UserState} from "../../redux/slices/user";
 import {RootState} from "../../redux/reducers";
+import Loading from "../Loading";
 
 export interface LoginFormInfo {
   id: string;
@@ -27,6 +28,8 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     const [disabled, setDisabled] = useState(false);
     const [onValidate, setOnValidate] = useState(false);
 
+    const dispatch = useDispatch();
+
     const validationSchema = Yup.object().shape({
         id: Yup.string().required('이메일을 입력해주세요.').email('잘못된 이메일 형식입니다.'),
         pw: Yup.string().required('비밀번호를 입력해주세요.').matches(
@@ -45,6 +48,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
             console.log('submit!!!')
             console.log(user, isLoading, error);
             setOnValidate(false);
+            dispatch(userSlice.actions.login({id: formik.values.id, pw: formik.values.pw}));
         },
         validationSchema,
         validate: ()=> setOnValidate(true),
@@ -74,27 +78,30 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * render method
    */
   return (
-      <styles.LoginFormLayout  onSubmit={formik.handleSubmit}>
-          <TextInput
-              name="id"
-              type="emil"
-              placeholder="이메일"
-              value={formik.values.id}
-              {...(formik.errors.id && { message: {type: 'error', text: formik.errors.id} })}
-              onChange={formik.handleChange} />
-          <TextInput
-              name="pw"
-              type="password"
-              placeholder="비밀번호"
-              value={formik.values.pw}
-              {...(formik.errors.pw && { message: {type: 'error', text: formik.errors.pw} })}
-              onChange={formik.handleChange} />
-          <Button
-              type="submit"
-              text="로그인"
-              disable={disabled}
-              isFull />
-      </styles.LoginFormLayout>
+      <>
+          {isLoading && <Loading />}
+          <styles.LoginFormLayout  onSubmit={formik.handleSubmit}>
+              <TextInput
+                  name="id"
+                  type="emil"
+                  placeholder="이메일"
+                  value={formik.values.id}
+                  {...(formik.errors.id && { message: {type: 'error', text: formik.errors.id} })}
+                  onChange={formik.handleChange} />
+              <TextInput
+                  name="pw"
+                  type="password"
+                  placeholder="비밀번호"
+                  value={formik.values.pw}
+                  {...(formik.errors.pw && { message: {type: 'error', text: formik.errors.pw} })}
+                  onChange={formik.handleChange} />
+              <Button
+                  type="submit"
+                  text="로그인"
+                  disable={disabled}
+                  isFull />
+          </styles.LoginFormLayout>
+      </>
   );
 };
 

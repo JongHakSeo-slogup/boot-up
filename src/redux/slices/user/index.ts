@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import { User } from "../../../InterfaceAndType/user";
 
 export interface UserState {
@@ -17,16 +17,16 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state: UserState) => {
+    login: (state: UserState, action: PayloadAction<{id: string, pw: string}>) => {
       state.isLoading = true;
     },
-    loginSuccess: (state: UserState, action) => {
+    loginSuccess: (state: UserState, {payload}: {payload: User}) => {
       state.isLoading = false;
-      state.user = action.payload;
+      state.user = payload;
     },
-    loginError: (state: UserState, action) => {
+    loginError: (state: UserState, {payload}) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     }
   },
 });
