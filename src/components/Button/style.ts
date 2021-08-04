@@ -1,12 +1,12 @@
 import styled, {css} from "styled-components";
 
-interface ButtonLayoutProps {
+interface ButtonProps {
     isFull: boolean;
     disable: boolean;
 }
 
 const styles = {
-    ButtonLayout: styled.button<ButtonLayoutProps>`
+    ButtonLayout: styled.button<ButtonProps>`
         cursor: pointer;
         width: ${({isFull}) => isFull ? '100%' : '50%'};
         ${({disable}) => (disable 
