@@ -15,6 +15,7 @@ interface Props{
     disabled?:boolean
     onClick?:()=>any
     underline?:boolean
+    type?: 'button' | 'submit' | undefined
 }
 
 
@@ -42,7 +43,7 @@ const Button: React.FC<Props> = (props: Props) => {
 
     return(
         <React.Fragment>
-            <ButtonEl {...styles} disabled={props.disabled} onClick={props.onClick}>{props.children}</ButtonEl>
+            <ButtonEl {...styles} type={props.type} disabled={props.disabled} onClick={props.onClick}>{props.children}</ButtonEl>
         </React.Fragment>
     )
 }
@@ -57,14 +58,15 @@ Button.defaultProps = {
     border_radius:'4px',
     font_size:'16px',
     font_weight:'500',
-    line_height:'24px'
+    line_height:'24px',
+    type:'button'
 }
 
 const ButtonEl = styled.button<Props>`
     width: ${props => props.width};
     height: ${props => props.height};
-    background: ${props => props.background};
-    color: ${props => props.color};
+    background: ${props => props.disabled ? '#EFEFEF' : `${props.background}`};
+    color: ${props => props.disabled ? '#D2D2D2' : `${props.color}`};
     margin: ${props => props.margin};
     border-radius: ${props => props.border_radius};
     font-size: ${props => props.font_size};
