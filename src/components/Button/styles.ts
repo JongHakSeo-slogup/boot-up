@@ -171,7 +171,9 @@ export const BlockGreySmallButton = styled(BlockGreyButton)`
 const TextButton = styled.button<any>`
   display: inline-block;
   font-weight: ${(props) => props.theme.fontWeight.button.regular};
+  color: ${(props) => props.theme.color.main.carpetBlack};
   background-color: transparent;
+  text-decoration: ${(props) => props.underlined ? 'underline' : 'none'};
   :hover {
     text-decoration: underline;
   }
