@@ -23,3 +23,9 @@ export const userSlice = createSlice({
     },
   },
 });
+
+export const { setUser } = userSlice.actions;
+
+export const api = {};
+
+export default userSlice.reducer;

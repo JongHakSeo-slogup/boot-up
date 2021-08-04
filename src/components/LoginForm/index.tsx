@@ -4,6 +4,7 @@ import Input from "../../elements/Input";
 import { useFormik } from "formik";
 import Button from "../../elements/Button";
 import { emailCheck, pwdCheck } from "../../shared/validate";
+import { Login } from "../../apis/account";
 
 // export interface LoginFormInfo {
 //   email: string;
@@ -69,6 +70,10 @@ const LoginForm: React.FC<Props> = (props: Props) => {
   /*
    * render method
    */
+
+  React.useEffect(() => {
+    Login(email, pwd).then(res => console.log(res.data)).catch(err => console.error(err));
+  },[])
 
   return (
     <React.Fragment>

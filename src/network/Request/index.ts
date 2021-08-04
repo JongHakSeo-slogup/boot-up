@@ -62,6 +62,7 @@ export const request = (params: RequestParams) => {
     };
   }
 
+
   if (!!axiosInterceptor || axiosInterceptor === 0) {
     axiosInstance.interceptors.response.eject(axiosInterceptor);
   }
