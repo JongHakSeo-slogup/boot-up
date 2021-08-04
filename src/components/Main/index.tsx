@@ -1,12 +1,13 @@
 import React from 'react';
+import {Container} from "./styles";
 
 export interface Props {}
 
 const Main: React.FC<Props> = (props: Props) => {
     return (
-        <div>
-            메인 페이지!
-        </div>
+        <Container>
+            둘러보기 중입니다
+        </Container>
     );
 };
 

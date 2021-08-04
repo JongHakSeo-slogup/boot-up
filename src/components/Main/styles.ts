@@ -1,3 +1,10 @@
 import styled from "styled-components";
 
-export const MainButton = styled.span<any>``;
+export const Container = styled.div<any>`
+  font-size: 24px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
