@@ -18,12 +18,15 @@ import { Login } from "../../apis/account";
 export interface Props {}
 
 const LoginForm: React.FC<Props> = (props: Props) => {
+
   // const formik = useFormik({
   //   initialValues,
   //     onSubmit:(values)=>{ console.log(values)},
   //     // validate,
   //     // validateOnChange
   // });
+
+
 
   /*
    * state method
