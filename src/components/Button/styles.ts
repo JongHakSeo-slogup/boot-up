@@ -188,6 +188,7 @@ export const BiggerTextButton = styled(TextButton)`
   line-height: ${(props) => props.theme.lineHeight.button.one};
 `
 export const BigTextButton = styled(TextButton)`
+  color: ${(props) => props.theme.color.grayScale.one};
   font-size: ${(props) => props.theme.fontSize.button.two};
   font-weight: ${(props) => props.theme.fontWeight.button.regular};
   line-height: ${(props) => props.theme.lineHeight.button.two};

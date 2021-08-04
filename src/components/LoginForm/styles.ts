@@ -1,15 +1,14 @@
 import styled from "styled-components";
+import {BigTextButton} from "../Button/styles";
 
 export const FormContainer = styled.form<any>`
   padding-top: 44px;
 `
-
 export  const LoginInputContainer = styled.div<any>`
   display: flex;
   flex-direction: column;
   margin: 16px 0;
 `
-
 export const InputLabel = styled.label.attrs<any>(props => ({
     htmlFor: props.htmlFor
 }))`
@@ -33,14 +32,19 @@ export const Input = styled.input.attrs<any>(props => ({
   border-bottom: 1px solid ${(props) => props.theme.color.grayScale.five};
 `;
 
-export const LoginButtonContainer = styled.div`
+export const LoginButtonContainer = styled.div<any>`
   padding: 16px 0;
 `
 
-export const LoginMenuContainer = styled.div`
+export const LoginMenuContainer = styled.div<any>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: ${(props) => props.theme.color.grayScale.two};
+  line-height: ${(props) => props.theme.lineHeight.body.two};
 `
 
-// export const FindIdButton = styled(BigTextButton)``
+export const FindButton = styled(BigTextButton)`
+  color: ${(props) => props.theme.color.grayScale.two};
+  line-height: ${(props) => props.theme.lineHeight.body.two};
+`

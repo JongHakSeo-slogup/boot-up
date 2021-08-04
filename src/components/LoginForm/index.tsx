@@ -1,8 +1,16 @@
 import React from "react";
 import {useFormik} from "formik";
 import {BigTextButton, BlockBlackBigButton} from "../Button/styles";
-import {FormContainer, LoginInputContainer, InputLabel, Input, LoginButtonContainer, LoginMenuContainer} from "./styles";
-import ValidateMessage from "../ValidateMessage";
+import {
+    FormContainer,
+    LoginInputContainer,
+    InputLabel,
+    Input,
+    LoginButtonContainer,
+    LoginMenuContainer,
+    FindButton,
+} from "./styles";
+import ValidateMessage from '../ValidateMessage';
 
 export interface LoginFormInfo {
     id: string;
@@ -55,12 +63,12 @@ const LoginForm: React.FC<Props> = (props: Props) => {
                 <LoginInputContainer>
                     <InputLabel htmlFor="id">아이디</InputLabel>
                     <Input id="id" type="email" placeholder="이메일"/>
-                    <ValidateMessage />
+                    <ValidateMessage/>
                 </LoginInputContainer>
                 <LoginInputContainer>
                     <InputLabel htmlFor="password">비밀번호</InputLabel>
                     <Input id="password" type="password" placeholder="비밀번호"/>
-                    <ValidateMessage />
+                    <ValidateMessage/>
                 </LoginInputContainer>
                 <LoginButtonContainer>
                     <BlockBlackBigButton disabled>
@@ -69,8 +77,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
                 </LoginButtonContainer>
                 <LoginMenuContainer>
                     <div>
-                        <FindIdButton /> | <FindPasswordButton />
-                        {/*<BigTextButton>비밀번호 찾기</BigTextButton>*/}
+                        <FindButton>아이디 찾기</FindButton> | <FindButton>비밀번호 찾기</FindButton>
                     </div>
                     <div>
                         <BigTextButton underlined>회원가입</BigTextButton>
