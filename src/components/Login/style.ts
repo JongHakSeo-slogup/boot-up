@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const styles = {
     LoginLayout: styled.div`
@@ -58,7 +59,7 @@ const styles = {
         text-align: center;
         margin-top: auto;
     `,
-    AroundButton: styled.button`
+    AroundButton: styled(Link)`
         cursor: pointer;
         text-decoration: underline;
         font-size: 14px;

@@ -17,7 +17,7 @@ function Login() {
                 <styles.JoinLink href="/signup">회원가입</styles.JoinLink>
             </styles.LinkArea>
             <styles.ButtonWrapper>
-                <styles.AroundButton>앱 둘러보기</styles.AroundButton>
+                <styles.AroundButton to="/home">앱 둘러보기</styles.AroundButton>
             </styles.ButtonWrapper>
         </styles.LoginLayout>
     )
