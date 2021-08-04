@@ -86,6 +86,7 @@ export const BasicGreySmallButton = styled(BasicGreyButton)`
 // Block 버튼
 const BlockButton = styled.button<any>`
   display: block;
+  width: 100%;
   text-align: center;
   border-radius: 4px;
   :disabled {
