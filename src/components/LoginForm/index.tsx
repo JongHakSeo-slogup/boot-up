@@ -13,13 +13,6 @@ const initialValues: LoginFormInfo = {
 export interface Props {}
 
 const LoginForm: React.FC<Props> = (props: Props) => {
-  // const formik = useFormik({
-  //   initialValues,
-  //     onSubmit:()=>{},
-  //     // validate,
-  //     // validateOnChange
-  // });
-
   /*
    * state method
    */
