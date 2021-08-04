@@ -62,7 +62,6 @@ export const request = (params: RequestParams) => {
     };
   }
 
-  console.log(config);
   axiosInstance = axios.create(config);
 
   if (!!axiosInterceptor || axiosInterceptor === 0) {

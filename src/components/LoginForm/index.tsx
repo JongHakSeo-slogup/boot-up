@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./style";
 import TextInput from "../TextInput";
 import Button from "../Button";
+import {useSelector} from "react-redux";
+import {UserState} from "../../redux/slices/user";
+import {RootState} from "../../redux/reducers";
 
 export interface LoginFormInfo {
   id: string;
@@ -17,32 +20,36 @@ const initialValues: LoginFormInfo = {
 export interface Props {}
 
 const LoginForm: React.FC<Props> = (props: Props) => {
+    /*
+   * state method
+   */
+    const { user, isLoading, error } = useSelector<RootState, UserState>(state => state.user);
     const [disabled, setDisabled] = useState(false);
+    const [onValidate, setOnValidate] = useState(false);
 
     const validationSchema = Yup.object().shape({
         id: Yup.string().required('이메일을 입력해주세요.').email('잘못된 이메일 형식입니다.'),
         pw: Yup.string().required('비밀번호를 입력해주세요.').matches(
             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
             '비밀번호 형식이 맞지않습니다.(문자, 숫자, 특수문자 조합)'
-        )
+        ),
     });
 
+    /*
+  * custom hook
+  */
     const formik = useFormik({
         initialValues,
         onSubmit:()=>{
-            console.log('submit')
+            if(disabled) return;
+            console.log('submit!!!')
+            console.log(user, isLoading, error);
+            setOnValidate(false);
         },
         validationSchema,
-        validateOnChange: false
+        validate: ()=> setOnValidate(true),
+        validateOnChange: onValidate,
    });
-
-  /*
-   * state method
-   */
-
-  /*
-   * custom hook
-   */
 
   /*
    * private method
@@ -51,6 +58,13 @@ const LoginForm: React.FC<Props> = (props: Props) => {
   /*
    * effect cycle
    */
+    useEffect(() => {
+        if(formik.isValid) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }, [formik.isValid]);
 
   /*
    * event handler
@@ -60,7 +74,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * render method
    */
   return (
-      <styles.LoginFormLayout onSubmit={formik.handleSubmit}>
+      <styles.LoginFormLayout  onSubmit={formik.handleSubmit}>
           <TextInput
               name="id"
               type="emil"
@@ -75,7 +89,11 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               value={formik.values.pw}
               {...(formik.errors.pw && { message: {type: 'error', text: formik.errors.pw} })}
               onChange={formik.handleChange} />
-          <Button type="submit" text="로그인" disable={disabled} isFull />
+          <Button
+              type="submit"
+              text="로그인"
+              disable={disabled}
+              isFull />
       </styles.LoginFormLayout>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './style';
-import {StyledComponentBase} from 'styled-components';
 
 interface ButtonProps {
     type: "button" | "submit" | "reset" | undefined,
