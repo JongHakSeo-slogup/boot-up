@@ -22,9 +22,16 @@ export const Theme = {
     }
   },
   fontWeight: {
-    heading: 'bold',
-    body: 'normal',
-    button: 'normal',
+    heading: {
+      bold: '700',
+    },
+    body: {
+      regular: '400',
+    },
+    button: {
+      regular: '400',
+      medium: '500',
+    },
   },
   lineHeight: {
     heading: {
