@@ -8,6 +8,8 @@ import {getSession} from "./apis/account";
 import AppLayout from "./components/AppLayout";
 import Tutorial from "./components/Tutorial";
 import Login from "./components/Login";
+import Home from "./components/Home";
+import {Route, Switch} from "react-router";
 
 function App() {
   const [isFirstVisited, setIsFisrtVisited] = useState(true);
@@ -25,7 +27,10 @@ function App() {
               {
                 isFirstVisited
                   ? <Tutorial imageName="image_iPhone.png" onClick={() => setIsFisrtVisited(false)} />
-                    : <Login/>
+                    : <Switch>
+                        <Route exact path="/" component={Login} />
+                        <Route exact path="/home" component={Home} />
+                    </Switch>
               }
             </AppLayout>
           </header>
