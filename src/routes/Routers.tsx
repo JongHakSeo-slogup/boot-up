@@ -2,7 +2,7 @@
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom';
 import { history } from "../redux/reducers";
-import Tutorial from "../components/Tutorial";
+import Tutorial from "../pages/Tutorial";
 import URLS from "./urls";
 
 const Routers = () => {

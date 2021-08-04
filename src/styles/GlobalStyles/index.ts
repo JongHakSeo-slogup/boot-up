@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 import reset from "styled-reset";
 
 export const bodyStyle = css`
@@ -6,7 +6,7 @@ export const bodyStyle = css`
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   height: 100%;
   color: #262626;
   background-color: white;
@@ -17,10 +17,49 @@ export const bodyStyle = css`
 
 const GlobalStyles = createGlobalStyle`
 	${reset};
-	
+
+
+    @font-face {
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: 100;
+      src: url("../fonts/NotoSansKR-Light.woff2") format('woff2'),
+      url("../fonts/NotoSansKR-Light.woff") format('woff'),
+      url("../fonts/NotoSansKR-Light.otf") format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: normal;
+      src: url("../fonts/NotoSansKR-Regular.woff2") format('woff2'),
+      url("../fonts/NotoSansKR-Regular.woff") format('woff'),
+      url("../fonts/NotoSansKR-Regular.otf") format('truetype')
+    }
+
+
+    @font-face {
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: medium;
+      src: url("../fonts/NotoSansKR-Medium.woff2") format('woff2'),
+      url("../fonts/NotoSansKR-Medium.woff") format('woff'),
+      url("../fonts/NotoSansKR-Medium.otf") format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: bold;
+      src: url("../fonts/NotoSansKR-Black.woff2") format('woff2'),
+      url("../fonts/NotoSansKR-Black.woff") format('woff'),
+      url("../fonts/NotoSansKR-Black.otf") format('truetype')
+    }    
+    
 html,body{
   width: 100%;
 }
+
 
 * {
   box-sizing: border-box;
@@ -85,9 +124,20 @@ a:-webkit-any-link {
 
 body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  ${bodyStyle}
+  ${bodyStyle};
+  height:100vh;
 }
 
 `;
+
+
+
+export const Container = styled.section<any>`
+  width:360px;
+  height:676px;
+  border: 1px solid black;
+  margin: auto;
+`;
+
 
 export default GlobalStyles;
