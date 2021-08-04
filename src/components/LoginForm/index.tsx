@@ -1,4 +1,6 @@
 import React from "react";
+import { Wrap, Form } from './style';
+import Input from "../../elements/Input";
 import { useFormik } from "formik";
 
 export interface LoginFormInfo {
@@ -44,7 +46,15 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * render method
    */
 
-  return <div />;
+  return (
+      <React.Fragment>
+          <Wrap>
+              <Form>
+                  <Input type='email' name='email' placeholder='이메일' auth/>
+              </Form>
+          </Wrap>
+      </React.Fragment>
+  );
 };
 
 LoginForm.defaultProps = {};

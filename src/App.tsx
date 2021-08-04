@@ -18,6 +18,8 @@ function App() {
     if(!isFirst){
       localStorage.setItem('tutorial', 'true');
       history.push(URLS.TUTORIAL_PAGE);
+    } if(isFirst && history.location.pathname !== URLS.TUTORIAL_PAGE){
+      history.push(URLS.LOGIN_PAGE);
     }
   },[])
 

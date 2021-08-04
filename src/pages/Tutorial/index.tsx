@@ -3,6 +3,8 @@ import { Container } from '../../styles/GlobalStyles'
 import { TitleBox, Title, Explain, DotQueue, Dots, SelectedDot } from './style';
 import Image from '../../elements/Image';
 import Button from "../../elements/Button";
+import {history} from "../../redux/reducers";
+import URLS, { imageUrl } from "../../routes/urls";
 
 export interface Props {}
 
@@ -19,14 +21,14 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                         </Explain>
                     </TitleBox>
                     <div style={{height:'385px'}}>
-                        <Image max_width='308px' margin='48px auto 0px auto' type='gradient' src='https://user-images.githubusercontent.com/88313357/128109406-0f3c8542-5876-4cdb-bbf1-3735c3a27ee4.png'/>
+                        <Image max_width='308px' margin='48px auto 0px auto' type='gradient' src={imageUrl.tutorial_image}/>
                     </div>
                     <DotQueue>
                         <Dots/>
                         <Dots/>
                         <SelectedDot/>
                     </DotQueue>
-                    <Button width='320px' height='56px' margin='32px 0px 0px 0px'>카펫 시작하기</Button>
+                    <Button onClick={() => {history.push(URLS.LOGIN_PAGE)}} width='320px' height='56px' margin='32px 0px 0px 0px'>카펫 시작하기</Button>
                 </Container>
         </React.Fragment>
     )

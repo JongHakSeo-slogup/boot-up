@@ -64,25 +64,25 @@ html,body{
 * {
   box-sizing: border-box;
 }
-input,
-button {
-  background-color: transparent;
-  -webkit-border-radius: 0;
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-  padding: 0;
-}
-input::-ms-clear {
-  display: none;
-  height: 0;
-  width: 0;
-}
-
-input:checked[type="checkbox"] {
-  background-color: #fff;
-  -webkit-appearance: checkbox;
-}
+//input,
+//button {
+//  background-color: transparent;
+//  -webkit-border-radius: 0;
+//  -webkit-appearance: none;
+//  border: none;
+//  outline: none;
+//  padding: 0;
+//}
+//input::-ms-clear {
+//  display: none;
+//  height: 0;
+//  width: 0;
+//}
+//
+//input:checked[type="checkbox"] {
+//  background-color: #fff;
+//  -webkit-appearance: checkbox;
+//}
 
 h1,
 h2,
@@ -133,9 +133,7 @@ body {
 
 
 export const Container = styled.section<any>`
-  width:360px;
-  height:676px;
-  border: 1px solid black;
+  width:100%;
   margin: auto;
 `;
 
