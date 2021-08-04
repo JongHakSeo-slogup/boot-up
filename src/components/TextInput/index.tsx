@@ -6,19 +6,17 @@ export interface InputMessageProps {
     text: string
 }
 
-interface TextInputProps {
-    type: string;
-    placeholder?: string;
+interface TextInputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     label?: string;
     message: InputMessageProps;
 };
 
-function TextInput({type, placeholder, label, message}: TextInputProps) {
+function TextInput({label, message, ...rest}: TextInputProps) {
     return(
         <styles.InputLayout message={message}>
             {label && <label>로그인</label>}
-            <input type={type} placeholder={placeholder} />
-            {message.text && <p><img src={`/images/icon_${message.type}.png`} alt="경고" /> 에러입니다~!</p>}
+            <input {...rest} />
+            {message.text && <p><img src={`/images/icon_${message.type}.png`} alt="경고" />{message.text}</p>}
         </styles.InputLayout>
     )
 };

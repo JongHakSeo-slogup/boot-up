@@ -1,20 +1,23 @@
 import React from 'react';
 import styles from './style';
+import {StyledComponentBase} from 'styled-components';
 
 interface ButtonProps {
+    type: "button" | "submit" | "reset" | undefined,
+    onClick?: ()=>void
     isFull: boolean,
     disable: boolean,
     text: string,
-    onClick?: ()=>void,
 };
 
 function Button({isFull, disable, text, ...rest}: ButtonProps) {
     return(
-        <styles.ButtonLayout isFull={isFull} disable={disable} {...rest} >{text}</styles.ButtonLayout>
+        <styles.ButtonLayout {...rest} isFull={isFull} disable={disable} >{text}</styles.ButtonLayout>
     )
 };
 
 Button.defaultProps = {
+    type: 'button',
     isFull: false,
     disable: false,
 }
