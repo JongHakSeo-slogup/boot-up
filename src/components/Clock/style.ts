@@ -15,7 +15,7 @@ const getColor = (props: any) => {
 
 export const ClockTimeWrapper = styled.span<any>`
   font-weight: bold;
-
+  
   color: ${getColor};
 
   color: ${(props) =>
