@@ -1,12 +1,14 @@
-import { all, takeLatest, delay, put } from "redux-saga/effects";
+import { all, takeLatest, call, put } from "redux-saga/effects";
 import { login } from "../../apis/account";
 import {userSlice} from "../slices/user";
 import {routerSlice} from "../slices/Route";
 import {PayloadAction} from "@reduxjs/toolkit";
+import {User} from "../../InterfaceAndType/user";
 
-export function* requestLogin(action: PayloadAction<{id: string, pw: string}>) {
+function* requestLogin(action: PayloadAction<{id: string, pw: string}>) {
+  const {id, pw} = action.payload;
   try {
-    yield delay(2000);
+    const user:User = yield call(login, id, pw);
     yield put(userSlice.actions.loginSuccess({name: 'name!'}));
 
     yield put(routerSlice.actions.goToHome());

@@ -45,8 +45,6 @@ const LoginForm: React.FC<Props> = (props: Props) => {
         initialValues,
         onSubmit:()=>{
             if(disabled) return;
-            console.log('submit!!!')
-            console.log(user, isLoading, error);
             setOnValidate(false);
             dispatch(userSlice.actions.login({id: formik.values.id, pw: formik.values.pw}));
         },
