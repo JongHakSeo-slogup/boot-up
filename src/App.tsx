@@ -4,19 +4,26 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import {getSession} from "./apis/account";
 import AppLayout from "./components/AppLayout";
 import Tutorial from "./components/Tutorial";
 import Login from "./components/Login";
 import Home from "./components/Home";
-import {Route, Switch} from "react-router";
+import {Route, Switch, withRouter} from "react-router";
 
 function App() {
   const [isFirstVisited, setIsFisrtVisited] = useState(true);
 
+  const onClickStart = () => {
+    localStorage.setItem('carpetVisited', 'visited');
+    setIsFisrtVisited(false);
+  }
+
   useEffect(() => {
-    getSession().then(data => console.log(data)).catch(e => console.log(e));
+    if(localStorage.getItem('carpetVisited')) {
+      setIsFisrtVisited(false);
+    }
   }, []);
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={Theme}>
@@ -26,7 +33,7 @@ function App() {
             <AppLayout>
               {
                 isFirstVisited
-                  ? <Tutorial imageName="image_iPhone.png" onClick={() => setIsFisrtVisited(false)} />
+                  ? <Tutorial imageName="image_iPhone.png" onClick={onClickStart} />
                     : <Switch>
                         <Route exact path="/" component={Login} />
                         <Route exact path="/home" component={Home} />
