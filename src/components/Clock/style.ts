@@ -13,17 +13,17 @@ const getColor = (props: any) => {
   }
 };
 
-export const ClockTimeWrapper = styled.span<any>`
+export const ClockTimeWrapper = styled.span<{ isExpired: boolean }>`
   font-weight: bold;
   
   color: ${getColor};
 
   color: ${(props) =>
-    props.isExpired ? props.theme.colors.red : props.theme.colors.blue};
+    props.isExpired
+      ? props.theme.common.colors.red
+      : props.theme.common.colors.blue};
 
-  ${(props) => props.theme.colors.blue};
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  color: ${(props) => props.theme.colors.red};
+  ${(props) => props.theme.common.colors.blue};
 `;
 
 export const ClockResetButton = styled.div<any>``;
