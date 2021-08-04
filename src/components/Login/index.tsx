@@ -24,5 +24,4 @@ const Login: React.FC<Props> = (props: Props) => {
 };
 
 Login.defaultProps = {};
-
 export default Login;

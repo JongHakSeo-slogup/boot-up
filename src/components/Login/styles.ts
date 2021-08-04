@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {BigTextButton} from "../Button/styles";
 
 export const Container = styled.div<any>`
   width: 100%;
