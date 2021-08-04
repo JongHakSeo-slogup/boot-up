@@ -6,10 +6,8 @@ export const Wrap = styled.div<Props>`
   flex-direction: column;
   align-items: center;
   width:100%;
-  height:300px;
   padding: 18px 20px 0px 20px;
-  border:1px solid black;
-  margin-top:28px;
+  margin-top:62px;
 `;
 
 export const Form = styled.form<Props>`

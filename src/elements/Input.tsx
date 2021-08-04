@@ -30,7 +30,7 @@ const Input: React.FC<Props> = (props: Props) => {
 }
 
 Input.defaultProps = {
-    margin:'34px 0px 0px 0px'
+    margin:'0px'
 }
 
 const Label = styled.label<any>`

@@ -14,6 +14,7 @@ interface Props{
     children?:any;
     disabled?:boolean
     onClick?:()=>any
+    underline?:boolean
 }
 
 
@@ -29,6 +30,14 @@ const Button: React.FC<Props> = (props: Props) => {
         background,
         color,
         margin
+    }
+
+    if(props.underline){
+        return(
+            <React.Fragment>
+                <UnderLineBtn onClick={props.onClick} disabled={props.disabled}>{props.children}</UnderLineBtn>
+            </React.Fragment>
+        )
     }
 
     return(
@@ -63,6 +72,16 @@ const ButtonEl = styled.button<Props>`
     line-height: ${props => props.line_height};
     border-style: none;
     cursor:pointer;
+`;
+
+const UnderLineBtn = styled.button<Props>`
+  font-size:14px;
+  line-height:20px;
+  font-weight:400;
+  color:#2E2E30;
+  text-decoration: underline;
+  border-style: none;
+  background: none;
 `;
 
 export default Button;
