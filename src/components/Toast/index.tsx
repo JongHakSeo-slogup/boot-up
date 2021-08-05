@@ -6,7 +6,7 @@ import {RootState} from "../../redux/reducers";
 import {toastSlice, ToastState} from "../../redux/slices/toast";
 
 function Toast() {
-    const {isVisible, message, type} = useSelector<RootState, ToastState>(state => state.toast);
+    const {isVisible, message} = useSelector<RootState, ToastState>(state => state.toast);
     const dispatch = useDispatch();
 
     const toastClose = () => {

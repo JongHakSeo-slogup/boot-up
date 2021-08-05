@@ -2,16 +2,13 @@ import React, {useEffect} from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
 import Cookies from "js-cookie";
-import {useDispatch} from "react-redux";
 
 function Login({ history }: {history: any}) {
-    const dispatch = useDispatch();
-
     useEffect(() => {
         if(localStorage.getItem('user') && Cookies.get('x-auth-token')) {
             history.push('/home');
         }
-    }, []);
+    }, [history]);
 
     return (
         <styles.LoginLayout>

@@ -3,7 +3,6 @@ import { login } from "../../apis/account";
 import {userSlice} from "../slices/user";
 import {routerSlice} from "../slices/route";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {RequestUser, User} from "../../InterfaceAndType/user";
 
 function* requestLogin(action: PayloadAction<{id: string, pw: string}>) {
   const {id, pw} = action.payload;

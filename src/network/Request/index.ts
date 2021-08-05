@@ -62,6 +62,12 @@ export const request = (params: RequestParams) => {
       ...queryParams,
     };
   }
+  if(Cookies.get('x-auth-token')) {
+    config.headers = {
+      ...config.headers,
+      'x-auth-token': Cookies.get('x-auth-token'),
+    }
+  }
 
 
   axiosInstance = axios.create(config);

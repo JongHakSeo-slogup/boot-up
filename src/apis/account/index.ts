@@ -1,5 +1,5 @@
 import {Method, request} from "../../network/Request";
-import {RequestUser, User} from "../../InterfaceAndType/user";
+import {RequestUser} from "../../InterfaceAndType/user";
 
 const url = "/apis/v1/user/sessions/me";
 

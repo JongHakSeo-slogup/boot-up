@@ -85,7 +85,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
 
             dispatch(toastSlice.actions.putToast({message: errorMessage, type: 'error'}));
         }
-    }, [error]);
+    }, [error, dispatch]);
 
   /*
    * event handler
