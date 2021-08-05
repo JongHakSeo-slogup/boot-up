@@ -4,10 +4,20 @@ import {BigTextButton} from "../Button/styles";
 export const FormContainer = styled.div<any>`
   padding-top: 44px;
 `
-export  const LoginInputContainer = styled.div<any>`
+export const LoginInputContainer = styled.div<any>`
   display: flex;
   flex-direction: column;
   margin: 16px 0;
+
+  :focus-within {
+    label {
+      opacity: 1;
+    }
+  }
+
+  label {
+    opacity: ${(props) => props.writted ? 1 : 0};
+  }
 `
 export const InputLabel = styled.label.attrs<any>(props => ({
     htmlFor: props.htmlFor
