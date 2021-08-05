@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import Qs from "qs";
 import HttpError from "../HttpError/index";
+import {TOKEN} from "../../constants/user";
 
 const TIMEOUT_MILLS = 200000;
 let call;
@@ -71,7 +72,7 @@ export const request = (params: RequestParams) => {
   axiosInterceptor = axiosInstance.interceptors.response.use(
     (res) => {
       const token = res.headers['x-auth-token'];
-      localStorage.setItem('token', token);
+      localStorage.setItem(TOKEN, token);
       return res;
     },
     (error) => {
