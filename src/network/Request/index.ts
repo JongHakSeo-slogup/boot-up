@@ -70,6 +70,8 @@ export const request = (params: RequestParams) => {
 
   axiosInterceptor = axiosInstance.interceptors.response.use(
     (res) => {
+      const token = res.headers['x-auth-token'];
+      localStorage.setItem('token', token);
       return res;
     },
     (error) => {

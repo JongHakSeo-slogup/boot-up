@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Token, User } from "../../../InterfaceAndType/user";
+import { User } from "../../../InterfaceAndType/user";
 
 export interface UserState {
-  token: Token,
   user: User | null;
   isLoading: boolean;
 }
 
 const initialState: UserState = {
-  token: { row: ''},
   user: null,
   isLoading: false,
 };
@@ -20,12 +18,8 @@ export const userSlice = createSlice({
     login: (state: UserState, action: PayloadAction<{id: string, password: string}>) => {
       state.isLoading = true;
     },
-    loginSuccess: (state: UserState, action: PayloadAction<{row: string}>) => {
+    loginSuccess: (state: UserState, action: PayloadAction<User>) => {
       state.isLoading = false;
-      state.token.row = action.payload.row;
-      console.log(state.token.row);
-    },
-    setUser: (state: UserState, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
   },
