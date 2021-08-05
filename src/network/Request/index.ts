@@ -38,6 +38,7 @@ export const request = (params: RequestParams) => {
     paramsSerializer: (params: any) => {
       return Qs.stringify(params, { arrayFormat: "brackets" });
     },
+    withCredentials: true,
   };
 
   call = axios.CancelToken.source();
@@ -62,6 +63,7 @@ export const request = (params: RequestParams) => {
     };
   }
 
+  axiosInstance = axios.create(config);
 
   if (!!axiosInterceptor || axiosInterceptor === 0) {
     axiosInstance.interceptors.response.eject(axiosInterceptor);

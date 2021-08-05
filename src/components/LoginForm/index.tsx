@@ -5,6 +5,9 @@ import { useFormik } from "formik";
 import Button from "../../elements/Button";
 import { emailCheck, pwdCheck } from "../../shared/validate";
 import { Login } from "../../apis/account";
+import { login } from "../../redux/slices/user";
+import { useDispatch } from "react-redux";
+import {history} from "../../redux/reducers";
 
 // export interface LoginFormInfo {
 //   email: string;
@@ -18,7 +21,6 @@ import { Login } from "../../apis/account";
 export interface Props {}
 
 const LoginForm: React.FC<Props> = (props: Props) => {
-
   // const formik = useFormik({
   //   initialValues,
   //     onSubmit:(values)=>{ console.log(values)},
@@ -26,7 +28,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
   //     // validateOnChange
   // });
 
-
+  const dispatch = useDispatch();
 
   /*
    * state method
@@ -51,13 +53,23 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * event handler
    */
 
-  const submitHandler = () => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!emailCheck(email)) {
-      return window.alert("email 형식이 유효하지 않습니다.");
+      window.alert("email 형식이 유효하지 않습니다.");
+      return false;
     }
     if (!pwdCheck(pwd)) {
-      return window.alert("비밀번호 형식이 유효하지 않습니다.");
+      window.alert("비밀번호 형식이 유효하지 않습니다.");
+      return false;
     }
+    Login(email, pwd)
+      .then((res) => {
+        sessionStorage.setItem("access-token", res.headers['x-auth-token']);
+        dispatch(login());
+        history.push('/main');
+      })
+      .catch((err) => console.error(err));
 
     return;
   };
@@ -74,9 +86,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * render method
    */
 
-  React.useEffect(() => {
-    Login(email, pwd).then(res => console.log(res.data)).catch(err => console.error(err));
-  },[])
+  React.useEffect(() => {}, []);
 
   return (
     <React.Fragment>

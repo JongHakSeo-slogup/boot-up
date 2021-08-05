@@ -1,10 +1,11 @@
-import { all, takeLatest, call } from "redux-saga/effects";
+import { all, takeLatest, call, put } from "redux-saga/effects";
 import { userSlice } from "../slices/user";
 import { getSession } from "../../apis/account";
 
 export function* requestLogin() {
   try {
-    yield call(getSession);
+    const { data } = yield call(getSession);
+    yield put(userSlice.actions.setUser(data.user));
   } catch (e) {
     console.error(e);
   }
