@@ -16,13 +16,16 @@ function* requestLogin(action: PayloadAction<{id: string, pw: string}>) {
     yield put(routerSlice.actions.goToHome());
   } catch (e) {
     yield put(userSlice.actions.loginError(e));
+    console.log(e)
     if(e) {
       let errorMessage = '';
+      console.dir(e);
       switch(e.message) {
         case WRONG_ID_OR_PASSWORD:
           errorMessage = '아이디 또는 비밀번호가 일치하지 않습니다. 5회 이상 틀릴 경우 로그인이 제한됩니다.';
           break;
         default:
+          errorMessage = '서버통신 에러 입니다.(잠시후 다시 시도해주시기 바랍니다.)'
           break;
       }
 

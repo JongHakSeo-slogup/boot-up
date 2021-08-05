@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
 
