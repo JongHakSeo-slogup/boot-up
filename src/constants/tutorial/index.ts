@@ -1,0 +1,1 @@
+export const TUTORIAL_VIEWED = 'tutorial-viewed';
