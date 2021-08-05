@@ -4,6 +4,7 @@ import Button from '../../elements/Button';
 import URLS, { imageUrl } from "../../routes/urls";
 import { Container } from '../../styles/GlobalStyles';
 import LoginForm from "../../components/LoginForm";
+import LoginFormik from "../../components/LoginFormik";
 import { HelpLogin, FindUserInfo, TourAppBtn } from "./style";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
@@ -31,7 +32,7 @@ const Login: React.FC<Props> = (props: Props) => {
         <React.Fragment>
             <Container>
                 <Image type='default' margin='74px auto 0px auto' src={imageUrl.logo_image} />
-                <LoginForm/>
+                <LoginFormik/>
                 <HelpLogin>
                     <span>
                         <FindUserInfo>
