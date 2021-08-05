@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {InputMessageProps} from "./index";
+import {Simulate} from "react-dom/test-utils";
 
 interface inputProps {
     message: InputMessageProps,
@@ -24,6 +25,13 @@ const styles = {
           }
         }}
       }
+      ${({message}) => {
+          if(message.type !== 'error') return css`
+            input:focus {
+              border-bottom: 1px solid #2e2e30;
+            }
+          `
+      }}
       label {
         font-size: 12px;
       }

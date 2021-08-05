@@ -73,6 +73,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     }, [formik.isValid]);
 
     useEffect(() => {
+        console.log(error);
         if(error) {
             let errorMessage = '';
             switch(error.message) {
