@@ -1,5 +1,5 @@
 const URLS = {
-  MAIN_PAGE: "/",
+  MAIN_PAGE: "/main",
   TUTORIAL_PAGE:'/tutorial',
   LOGIN_PAGE:'/login',
 };

@@ -1,6 +1,6 @@
 import { Method, request } from "../../network/Request";
+import {getCookie} from "../../shared/Cookie";
 
-const url = "http://20.41.102.169";
 
 export function Login(email: string, password: string) {
   return request({
@@ -17,6 +17,6 @@ export function Login(email: string, password: string) {
 export function getSession() {
   return request({
     method: Method.GET,
-    baseUrl: url,
+    baseUrl: "/apis/v1/user/sessions/me",
   });
 }

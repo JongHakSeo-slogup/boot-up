@@ -23,9 +23,3 @@ export const userSlice = createSlice({
     },
   },
 });
-
-export const {
-  setUser,
-  login } = userSlice.actions;
-
-

@@ -5,9 +5,12 @@ import { useFormik } from "formik";
 import Button from "../../elements/Button";
 import { emailCheck, pwdCheck } from "../../shared/validate";
 import { Login } from "../../apis/account";
-import { login } from "../../redux/slices/user";
+import { userSlice } from "../../redux/slices/user";
 import { useDispatch } from "react-redux";
-import {history} from "../../redux/reducers";
+import { history } from "../../redux/reducers";
+import { setCookie, getCookie } from "../../shared/Cookie";
+import * as userSaga from "../../redux/sagas/user";
+import axios from "axios";
 
 // export interface LoginFormInfo {
 //   email: string;
@@ -65,9 +68,10 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     }
     Login(email, pwd)
       .then((res) => {
-        sessionStorage.setItem("access-token", res.headers['x-auth-token']);
-        dispatch(login());
-        history.push('/main');
+        setCookie("x-auth-token", res.headers["x-auth-token"]);
+        axios.defaults.headers.common["x-auth-token"] = getCookie(
+            "x-auth-token");
+        dispatch(userSlice.actions.login());
       })
       .catch((err) => console.error(err));
 
