@@ -98,7 +98,7 @@ const BlockBlackButton = styled(BlockButton)`
   color: ${(props) => props.theme.color.grayScale.white};
   background-color: ${(props) => props.theme.color.grayScale.one};
   
-  :hover {
+  :not(:disabled):hover {
     background-color: ${(props) => props.theme.color.main.darkBlack};
   }
 `
@@ -110,7 +110,6 @@ const BlockGreyButton = styled(BlockButton)`
     background-color: ${(props) => props.theme.color.grayScale.four};
   }
 `
-
 export const BlockBlackBiggerButton = styled(BlockBlackButton)`
   font-size: ${(props) => props.theme.fontSize.button.one};
   font-weight: ${(props) => props.theme.fontWeight.button.medium};
