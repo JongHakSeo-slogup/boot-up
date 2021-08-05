@@ -1,15 +1,8 @@
 import React, {useEffect} from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
-import Cookies from "js-cookie";
 
-function Login({ history }: {history: any}) {
-    useEffect(() => {
-        if(localStorage.getItem('user') && Cookies.get('x-auth-token')) {
-            history.push('/home');
-        }
-    }, [history]);
-
+function Login() {
     return (
         <styles.LoginLayout>
             <styles.LogoArea>

@@ -79,7 +79,7 @@ export const request = (params: RequestParams) => {
   axiosInterceptor = axiosInstance.interceptors.response.use(
     (res) => {
       if(res.headers['x-auth-token']) {
-        Cookies.set('x-auth-token', res.headers['x-auth-token'])
+        Cookies.set('x-auth-token', res.headers['x-auth-token'], {expires: 1/144})
       }
 
       return res;

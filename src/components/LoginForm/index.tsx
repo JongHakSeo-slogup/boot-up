@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./style";
@@ -8,8 +8,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {userSlice, UserState} from "../../redux/slices/user";
 import {RootState} from "../../redux/reducers";
 import Loading from "../Loading";
-import {WRONG_ID_OR_PASSWORD} from "../../network/HttpError";
-import {toastSlice} from "../../redux/slices/toast";
 
 export interface LoginFormInfo {
   id: string;
@@ -26,8 +24,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     /*
    * state method
    */
-    const { isLoading, error } = useSelector<RootState, UserState>(state => state.user);
-    const [disabled, setDisabled] = useState(false);
+    const { isLoading } = useSelector<RootState, UserState>(state => state.user);
     const [onValidate, setOnValidate] = useState(false);
 
     const dispatch = useDispatch();
@@ -41,7 +38,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     });
 
     const onSubmit = () => {
-        if(disabled) return;
+        if(!formik.isValid) return;
         setOnValidate(false);
         dispatch(userSlice.actions.login({id: formik.values.id, pw: formik.values.pw}));
     }
@@ -64,29 +61,6 @@ const LoginForm: React.FC<Props> = (props: Props) => {
   /*
    * effect cycle
    */
-    useEffect(() => {
-        if(formik.isValid) {
-            setDisabled(false);
-        } else {
-            setDisabled(true);
-        }
-    }, [formik.isValid]);
-
-    useEffect(() => {
-        console.log(error);
-        if(error) {
-            let errorMessage = '';
-            switch(error.message) {
-                case WRONG_ID_OR_PASSWORD:
-                    errorMessage = '아이디 또는 비밀번호가 일치하지 않습니다. 5회 이상 틀릴 경우 로그인이 제한됩니다.';
-                    break;
-                default:
-                    break;
-            }
-
-            dispatch(toastSlice.actions.putToast({message: errorMessage, type: 'error'}));
-        }
-    }, [error, dispatch]);
 
   /*
    * event handler
@@ -116,7 +90,7 @@ const LoginForm: React.FC<Props> = (props: Props) => {
               <Button
                   type="submit"
                   text="로그인"
-                  disable={disabled}
+                  disable={!formik.isValid}
                   isFull />
           </styles.LoginFormLayout>
       </>

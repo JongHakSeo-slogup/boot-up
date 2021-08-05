@@ -1,6 +1,5 @@
 import styled, {css} from "styled-components";
 import {InputMessageProps} from "./index";
-import {Simulate} from "react-dom/test-utils";
 
 interface inputProps {
     message: InputMessageProps,
