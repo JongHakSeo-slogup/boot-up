@@ -11,29 +11,33 @@ import {getCookie} from "../shared/Cookie";
 import React from "react";
 import {userSlice} from "../redux/slices/user";
 import Main from "../pages/Main";
+import {getSession} from "../apis/account";
 
 const Routers = () => {
 
     const dispatch = useDispatch();
-    const isFirst = localStorage.getItem('tutorial');
+    const NotFirstVisit = localStorage.getItem('tutorial');
     const user_info = useSelector((state: RootState) => state.user.user);
     const token = getCookie('x-auth-token');
+    const isFirstPage = history.location.pathname === '/'
 
     React.useEffect(() => {
-        console.log(isFirst);
-        if(!isFirst){
+        console.log(NotFirstVisit);
+        if(!NotFirstVisit){
             localStorage.setItem('tutorial', 'true');
             history.push(URLS.TUTORIAL_PAGE);
-        } else if(isFirst && history.location.pathname !== URLS.TUTORIAL_PAGE && !token){
+        } else if(NotFirstVisit && isFirstPage && !token){
             history.push(URLS.LOGIN_PAGE);
-        } else {
+        } else if(NotFirstVisit && isFirstPage && token){
             history.push(URLS.MAIN_PAGE);
         }
     },[])
 
     React.useEffect(() => {
         if(token && !user_info) {
-            dispatch(userSlice.actions.login());
+            getSession().then((res) => {
+                dispatch(userSlice.actions.setUser(res.data.row.user));
+            });
         }
     },[]);
 

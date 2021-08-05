@@ -16,7 +16,6 @@ export function* requestLogin() {
     const { data } = yield call(getSession);
     console.log(data.row.user)
     yield put(userSlice.actions.setUser(data.row.user));
-    yield history.push(URLS.MAIN_PAGE);
   } catch (e) {
     console.error(e);
   }

@@ -11,22 +11,31 @@ export interface Props {
   margin?: string;
   validate?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  label?:boolean;
   value?: any;
+  _ref?: any;
 }
 
 const Input: React.FC<Props> = (props: Props) => {
   if (props.auth) {
     return (
       <React.Fragment>
-        <Label htmlfor={props.name}>{props.text}</Label>
+        { props.label? <Label htmlfor={props.name} margin={props.margin}>{props.text}</Label>: ''
+
+        }
         <AuthInput
           onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
           validate={props.validate}
-          margin={props.margin}
           value={props.value}
           type={props.type}
           name={props.name}
           placeholder={props.placeholder}
+          ref={props._ref}
+          margin={props.label ? '': props.margin}
           required
         ></AuthInput>
       </React.Fragment>
@@ -44,7 +53,13 @@ Input.defaultProps = {
   onChange: () => {},
 };
 
-const Label = styled.label<any>``;
+const Label = styled.label<any>`
+  margin: ${(props) => props.margin};
+  font-size: 12px;
+  line-height: 18px;
+  color: #646464;
+  font-weight: 400;
+`;
 
 const AuthInput = styled.input<Props>`
   width: 100%;
