@@ -18,11 +18,28 @@ export const Form = styled.form<Props>`
 `;
 
 export const Warn = styled.div<Props>`
-  display:flex;
+  display: flex;
   flex-direction: row;
   margin-top: 12px;
-  font-size:12px;
-  line-height:18px;
-  font-weight:400;
-  color: #E60000;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #e60000;
+`;
+
+export const PwdInput = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position:relative;
+  width:100%;
+  margin:32px 0px 0px 0px;
+`;
+
+export const Eye = styled.img<Props>`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 14px;
+  right: 1px;
 `;

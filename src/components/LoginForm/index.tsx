@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrap, Form, Warn } from "./style";
+import { Wrap, Form, Warn, PwdInput, Eye } from "./style";
 import Input from "../../elements/Input";
 import { useFormik } from "formik";
 import Button from "../../elements/Button";
@@ -10,9 +10,7 @@ import { userSlice } from "../../redux/slices/user";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../redux/reducers";
 import { setCookie, getCookie } from "../../shared/Cookie";
-import * as userSaga from "../../redux/sagas/user";
 import axios from "axios";
-import { RootState } from "../../redux/store";
 import URLS, { imageUrl } from "../../routes/urls";
 
 // export interface LoginFormInfo {
@@ -39,9 +37,10 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    */
   const [email, setEmail] = React.useState<string>("");
   const [pwd, setPwd] = React.useState<string>("");
-  const [isOpen, setIsOpen] = React.useState<"password">("password");
+  const [isOpen, setIsOpen] = React.useState<"password" | "text">(
+    "password"
+  );
   const [disable_btn, setDisableBtn] = React.useState<boolean>(false);
-
 
   /*
    * custom hook
@@ -61,15 +60,23 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    * event handler
    */
 
+  const eyeHandler = () => {
+    if (isOpen === "password") {
+      setIsOpen("text");
+    } else {
+      setIsOpen("password");
+    }
+  };
+
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!emailCheck(email)) {
       setDisableBtn(true);
-      return ;
+      return;
     }
     if (!pwdCheck(pwd)) {
       setDisableBtn(true);
-      return ;
+      return;
     }
     Login(email, pwd)
       .then((res) => {
@@ -86,14 +93,14 @@ const LoginForm: React.FC<Props> = (props: Props) => {
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    if(emailCheck(e.target.value) && pwdCheck(pwd)){
+    if (emailCheck(e.target.value) && pwdCheck(pwd)) {
       setDisableBtn(false);
     }
   };
 
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPwd(e.target.value);
-    if(pwdCheck(e.target.value) && emailCheck(email)){
+    if (pwdCheck(e.target.value) && emailCheck(email)) {
       setDisableBtn(false);
     }
   };
@@ -103,7 +110,6 @@ const LoginForm: React.FC<Props> = (props: Props) => {
    *
    */
 
-
   return (
     <React.Fragment>
       <Wrap>
@@ -111,14 +117,14 @@ const LoginForm: React.FC<Props> = (props: Props) => {
           <Input
             validate={emailCheck(email) || !disable_btn}
             onChange={handleEmail}
-            type="email"
+            type="text"
             name="email"
             placeholder="이메일"
-            text='아이디'
-            label={email !== '' ? true: false}
+            text="아이디"
+            label={email !== "" ? true : false}
             auth
           />
-          {!emailCheck(email) && email && disable_btn? (
+          {!emailCheck(email) && email && disable_btn ? (
             <>
               <Warn>
                 <Image
@@ -134,18 +140,27 @@ const LoginForm: React.FC<Props> = (props: Props) => {
           ) : (
             ""
           )}
-          <Input
-            validate={pwdCheck(pwd) || !disable_btn}
-            onChange={handlePassword}
-            type={isOpen}
-            name="password"
-            placeholder="비밀번호"
-            text='비밀번호'
-            label={pwd !== '' ? true: false}
-            margin='32px 0px 0px 0px'
-            auth
-          />
-          {!pwdCheck(pwd) && pwd && disable_btn? (
+          <PwdInput>
+            <Input
+              validate={pwdCheck(pwd) || !disable_btn}
+              onChange={handlePassword}
+              type={isOpen}
+              name="password"
+              placeholder="비밀번호"
+              text="비밀번호"
+              label={pwd !== "" ? true : false}
+              auth
+            />
+            <Eye
+              src={
+                isOpen === "text"
+                  ? imageUrl.eye_toggle_image
+                  : imageUrl.eye_close_image
+              }
+              onClick={eyeHandler}
+            />
+          </PwdInput>
+          {!pwdCheck(pwd) && pwd && disable_btn ? (
             <>
               <Warn>
                 <Image

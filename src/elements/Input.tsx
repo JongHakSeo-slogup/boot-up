@@ -4,7 +4,7 @@ import styled from "styled-components";
 export interface Props {
   auth?: boolean;
   name: string;
-  type: "password" | "email";
+  type: "password" | "text";
   placeholder: string;
   for?: string;
   text?: string;
@@ -13,7 +13,7 @@ export interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  label?:boolean;
+  label?: boolean;
   value?: any;
   _ref?: any;
 }
@@ -22,9 +22,13 @@ const Input: React.FC<Props> = (props: Props) => {
   if (props.auth) {
     return (
       <React.Fragment>
-        { props.label? <Label htmlfor={props.name} margin={props.margin}>{props.text}</Label>: ''
-
-        }
+        {props.label ? (
+          <Label htmlfor={props.name} margin={props.margin}>
+            {props.text}
+          </Label>
+        ) : (
+          ""
+        )}
         <AuthInput
           onChange={props.onChange}
           onFocus={props.onFocus}
@@ -35,7 +39,7 @@ const Input: React.FC<Props> = (props: Props) => {
           name={props.name}
           placeholder={props.placeholder}
           ref={props._ref}
-          margin={props.label ? '': props.margin}
+          margin={props.label ? "" : props.margin}
           required
         ></AuthInput>
       </React.Fragment>
