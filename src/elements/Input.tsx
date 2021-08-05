@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Theme} from "../styles/theme";
 
 export interface Props {
   auth?: boolean;
@@ -59,34 +60,34 @@ Input.defaultProps = {
 
 const Label = styled.label<any>`
   margin: ${(props) => props.margin};
-  font-size: 12px;
+  font-size: ${Theme.common.fontSizes.small};
   line-height: 18px;
-  color: #646464;
+  color: ${Theme.common.colors.label_text};
   font-weight: 400;
 `;
 
 const AuthInput = styled.input<Props>`
   width: 100%;
   border-style: none;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid ${Theme.common.colors.light_gray};
   padding-bottom: 12px;
   margin: ${(props) => props.margin};
-  font-size: 16px;
+  font-size: ${Theme.common.fontSizes.large};
   line-height: 24px;
   ::placeholder {
-    color: #d2d2d2;
+    color: ${Theme.common.colors.light_text};
   }
   ::-webkit-input-placeholder {
-    color: #d2d2d2;
+    color: ${Theme.common.colors.light_text};
   }
   ::-ms-input-placeholder {
-    color: #d2d2d2;
+    color: ${Theme.common.colors.light_text};
   }
   &:focus {
     ${(props) =>
       props.validate
-        ? "border-bottom: 2px solid #2E2E30"
-        : "border-bottom: 2px solid #E60000"};
+        ? `border-bottom: 2px solid ${Theme.common.colors.black}`
+        : `border-bottom: 2px solid ${Theme.common.colors.red}`};
     outline-style: none;
   }
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Props } from "./index";
+import { Theme } from "../../styles/theme";
 
 export const Wrap = styled.div<Props>`
   display: flex;
@@ -24,7 +25,7 @@ export const Warn = styled.div<Props>`
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
-  color: #e60000;
+  color: ${Theme.common.colors.red};
 `;
 
 export const PwdInput = styled.div`

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Props } from './index';
+import { Theme} from "../../styles/theme";
 
 export const HelpLogin = styled.div<Props>`
   display:flex;
@@ -12,10 +13,10 @@ export const HelpLogin = styled.div<Props>`
 `;
 
 export const FindUserInfo = styled.button<Props>`
-  font-size:14px;
+  font-size:${Theme.common.fontSizes.medium};
   line-height:20px;
   font-weight:400;
-  color:#646464;
+  color:${Theme.common.colors.label_text};
   border-style: none;
   background: none;
 `;

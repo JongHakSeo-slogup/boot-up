@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import {Theme} from "../styles/theme";
 
 interface Props{
     width?:string
@@ -52,11 +53,11 @@ Button.defaultProps = {
     onClick:()=>{},
     width:'100%',
     height:'100%',
-    background:'#2E2E30',
-    color:'#FFFFFF',
+    background: Theme.common.colors.black,
+    color: Theme.common.colors.white,
     margin: '',
     border_radius:'4px',
-    font_size:'16px',
+    font_size: Theme.common.fontSizes.large,
     font_weight:'500',
     line_height:'24px',
     type:'button'
@@ -65,8 +66,8 @@ Button.defaultProps = {
 const ButtonEl = styled.button<Props>`
     width: ${props => props.width};
     height: ${props => props.height};
-    background: ${props => props.disabled ? '#EFEFEF' : `${props.background}`};
-    color: ${props => props.disabled ? '#D2D2D2' : `${props.color}`};
+    background: ${props => props.disabled ? Theme.common.colors.light_gray : `${props.background}`};
+    color: ${props => props.disabled ? Theme.common.colors.light_text : `${props.color}`};
     margin: ${props => props.margin};
     border-radius: ${props => props.border_radius};
     font-size: ${props => props.font_size};
@@ -77,13 +78,14 @@ const ButtonEl = styled.button<Props>`
 `;
 
 const UnderLineBtn = styled.button<Props>`
-  font-size:14px;
+  font-size:${Theme.common.fontSizes.medium};
   line-height:20px;
   font-weight:400;
-  color:#2E2E30;
+  color:${Theme.common.colors.black};
   text-decoration: underline;
   border-style: none;
   background: none;
+  cursor:pointer;
 `;
 
 export default Button;

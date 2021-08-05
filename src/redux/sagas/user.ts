@@ -1,10 +1,8 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
 import { userSlice } from "../slices/user";
 import { getSession } from "../../apis/account";
-import {history} from "../reducers";
 import axios from "axios";
 import {getCookie} from "../../shared/Cookie";
-import URLS from "../../routes/urls";
 
 axios.defaults.headers.common["x-auth-token"] = getCookie(
     "x-auth-token");
