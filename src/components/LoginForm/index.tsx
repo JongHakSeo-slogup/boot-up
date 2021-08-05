@@ -12,6 +12,8 @@ import {
     FindButton,
 } from "./styles";
 import ValidateMessage from '../ValidateMessage';
+import {useDispatch} from "react-redux";
+import {userSlice} from "../../redux/slices/user";
 
 export interface LoginFormInfo {
     id: string;
@@ -29,10 +31,13 @@ export interface Props {
 const LoginForm: React.FC<Props> = (props: Props) => {
     const [disabled, setDisabled] = useState(false);
     const [validationOn, setValidationOn] = useState(false);
+
+    const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            dispatch(userSlice.actions.login(values));
         },
         validate: () => {
             setValidationOn(true);

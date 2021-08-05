@@ -62,6 +62,8 @@ export const request = (params: RequestParams) => {
     };
   }
 
+  axiosInstance = axios.create(config);
+
   if (!!axiosInterceptor || axiosInterceptor === 0) {
     axiosInstance.interceptors.response.eject(axiosInterceptor);
   }
