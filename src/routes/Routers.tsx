@@ -10,6 +10,7 @@ import {RootState} from "../redux/store";
 import {getCookie} from "../shared/Cookie";
 import React from "react";
 import {userSlice} from "../redux/slices/user";
+import Main from "../pages/Main";
 
 const Routers = () => {
 
@@ -41,6 +42,7 @@ const Routers = () => {
             <Switch>
                 <Route exact path={URLS.TUTORIAL_PAGE} component={Tutorial}/>
                 <Route exact path={URLS.LOGIN_PAGE} component={Login}/>
+                <Route exact path={URLS.MAIN_PAGE} component={Main}/>
             </Switch>
         </ConnectedRouter>
     )
