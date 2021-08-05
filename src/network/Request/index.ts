@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import Qs from "qs";
 import HttpError from "../HttpError/index";
+import Cookies from "js-cookie";
 
 const TIMEOUT_MILLS = 200000;
 let call;
@@ -62,6 +63,7 @@ export const request = (params: RequestParams) => {
     };
   }
 
+
   axiosInstance = axios.create(config);
 
   if (!!axiosInterceptor || axiosInterceptor === 0) {
@@ -70,6 +72,10 @@ export const request = (params: RequestParams) => {
 
   axiosInterceptor = axiosInstance.interceptors.response.use(
     (res) => {
+      if(res.headers['x-auth-token']) {
+        Cookies.set('x-auth-token', res.headers['x-auth-token'])
+      }
+
       return res;
     },
     (error) => {

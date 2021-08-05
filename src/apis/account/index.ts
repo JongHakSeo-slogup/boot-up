@@ -1,9 +1,9 @@
 import {Method, request} from "../../network/Request";
-import {User} from "../../InterfaceAndType/user";
+import {RequestUser, User} from "../../InterfaceAndType/user";
 
-const url = "https://jsonplaceholder.typicode.com/posts";
+const url = "/apis/v1/user/sessions/me";
 
-export async function login(id: string, pw: string): Promise<User> {
+export async function login(id: string, pw: string): Promise<RequestUser> {
     const body ={
         user_eml_addr:id,
         pass:pw,
@@ -14,7 +14,7 @@ export async function login(id: string, pw: string): Promise<User> {
         baseUrl: url,
         body
     })
-    return data as User
+    return data
 }
 
 export function getSession() {

@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
+import Cookies from "js-cookie";
+import {useDispatch} from "react-redux";
 
-function Login() {
+function Login({ history }: {history: any}) {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(localStorage.getItem('user') && Cookies.get('x-auth-token')) {
+            history.push('/home');
+        }
+    }, []);
+
     return (
         <styles.LoginLayout>
             <styles.LogoArea>

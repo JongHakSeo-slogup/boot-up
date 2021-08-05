@@ -2,14 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import store, {customHistory} from "./redux/store";
 import {Router} from "react-router-dom";
-import {customHistory} from "./redux/store";
+import { Theme } from "./styles/theme";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./styles/GlobalStyles";
+import {Provider} from "react-redux";
 
 ReactDOM.render(
   // <React.StrictMode>
-    <Router history={customHistory}>
-        <App />
-    </Router>,
+    <Provider store={store}>
+        <ThemeProvider theme={Theme}>
+            <GlobalStyles />
+                <Router history={customHistory}>
+                    <App />
+                </Router>
+        </ThemeProvider>
+    </Provider>,
   // </React.StrictMode>,
   document.getElementById("root")
 );

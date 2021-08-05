@@ -1,5 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 
+export const WRONG_ID_OR_PASSWORD = 'wrongIdOrPassword';
+
 class HttpError {
   public status = -1;
 
@@ -12,10 +14,10 @@ class HttpError {
   constructor(error: AxiosResponse | AxiosError) {
     this.rawError = error;
     let data;
+
     // eslint-disable-next-line no-prototype-builtins
     if (error.hasOwnProperty("isAxiosError")) {
       // ? error type is AxiosError
-
       // @ts-ignore
       if (error.response) {
         // @ts-ignore
@@ -29,10 +31,7 @@ class HttpError {
     }
 
     if (data) {
-      // const { message, status, response, timestamp } = data;
-      // this.status = status;
-      // this.response = response;
-      // this.message = message;
+      this.message = data.rows[0].msg;
     }
   }
 

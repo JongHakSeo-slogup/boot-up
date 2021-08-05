@@ -19,14 +19,20 @@ export const userSlice = createSlice({
   reducers: {
     login: (state: UserState, action: PayloadAction<{id: string, pw: string}>) => {
       state.isLoading = true;
+      state.error = null;
     },
     loginSuccess: (state: UserState, {payload}: {payload: User}) => {
       state.isLoading = false;
       state.user = payload;
+      state.error = null;
     },
     loginError: (state: UserState, {payload}) => {
       state.isLoading = false;
       state.error = payload;
+    },
+    isLogedin: (state: UserState, {payload}) => {
+      state.user = payload;
+      state.error = null;
     }
   },
 });

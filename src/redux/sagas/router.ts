@@ -1,5 +1,5 @@
 import { all, takeLatest, getContext } from "redux-saga/effects";
-import {routerSlice} from "../slices/Route";
+import {routerSlice} from "../slices/route";
 
 export function* goHome() {
     // @ts-ignore
