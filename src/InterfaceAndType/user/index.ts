@@ -1,3 +1,13 @@
 export interface User {
-  row: Object;
+    row: string;
+}
+
+export interface UserRequest {
+    data: {
+        row: {
+            user: {
+                user_eml_addr: string
+            }
+        }
+    }
 }
