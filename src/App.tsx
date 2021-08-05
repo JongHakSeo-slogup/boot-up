@@ -12,6 +12,8 @@ import Main from "./components/Main";
 import Login from "./components/Login";
 import Tutorial from "./components/Tutorial";
 
+import TutorialRoute from "./routes/TutorialRoute";
+
 function App() {
     return (
         <Provider store={store}>
@@ -19,7 +21,7 @@ function App() {
                 <GlobalStyles/>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path={URLS.TUTORIAL_PAGE} component={Tutorial} />
+                        <TutorialRoute exact path={URLS.TUTORIAL_PAGE} component={Tutorial}/>
                         <Route exact path={URLS.LOGIN_PAGE} component={Login} />
                         <Route exact path={URLS.MAIN_PAGE} component={Main} />
                         <Redirect path="*" to={URLS.MAIN_PAGE} />
