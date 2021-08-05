@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<any>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -15,7 +15,7 @@ export const Icon = styled.img`
   height: 100%;
   object-fit: contain;
 `
-export const Description = styled.p`
+export const Description = styled.p<any>`
   font-size: ${({theme}) => theme.fontSize.body.three};
   font-weight: ${({theme}) => theme.fontWeight.body.regular};
   line-height: ${({theme}) => theme.lineHeight.body.three};

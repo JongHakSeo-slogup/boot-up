@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {BigTextButton} from "../Button/styles";
 
-export const FormContainer = styled.form<any>`
+export const FormContainer = styled.div<any>`
   padding-top: 44px;
 `
 export  const LoginInputContainer = styled.div<any>`
