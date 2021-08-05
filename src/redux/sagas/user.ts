@@ -16,6 +16,12 @@ export function* requestLogin() {
     yield put(userSlice.actions.setUser(data.row.user));
   } catch (e) {
     console.error(e);
+    if(e.rawError){
+      console.log(e.rawError.response.data.rows[0].msg);
+      if(e.rawError.response.data.rows[0].msg === 'jsonWebTokenError') {
+        window.alert('인증 에러, 잘못된 권한 또는 권한 음슴')
+      }
+    }
   }
 }
 

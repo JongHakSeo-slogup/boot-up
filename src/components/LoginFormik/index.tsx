@@ -47,7 +47,16 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
             dispatch(userSlice.actions.login());
             history.push(URLS.MAIN_PAGE);
           })
-          .catch((err) => console.error(err));
+          .catch((err) => {
+            console.error(err)
+            if(err.rawError){
+              console.log(err.rawError.response.data.rows[0].msg);
+              if(err.rawError.response.data.rows[0].msg === 'wrongIdOrPassword'){
+                window.alert('아이디 또는 비밀번호가 일치하지 않거나 존재하지 않는 아이디 입니다.')
+              }
+            }
+
+          });
 
     },
     validate: (values) => {
