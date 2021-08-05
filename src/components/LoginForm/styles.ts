@@ -1,6 +1,30 @@
 import styled from "styled-components";
 import {BigTextButton} from "../Button/styles";
 
+const getBorderBottomColor = (props: any) => {
+  const { written, error, theme } = props;
+
+  switch (true) {
+    case error:
+      return theme.color.state.red;
+    case written:
+      return theme.color.main.carpetBlack;
+    default:
+      return theme.color.grayScale.five;
+  }
+};
+
+const getBorderBottomWidth = (props: any) => {
+    const { written, error, theme } = props;
+
+    switch (true) {
+        case error || written:
+            return '2px';
+        default:
+            return '1px';
+    }
+};
+
 export const FormContainer = styled.div<any>`
   padding-top: 44px;
 `
@@ -13,10 +37,18 @@ export const LoginInputContainer = styled.div<any>`
     label {
       opacity: 1;
     }
+
+    input {
+      border-bottom: 2px solid ${(props) => getBorderBottomColor(props)};
+    }
   }
 
   label {
-    opacity: ${(props) => props.writted ? 1 : 0};
+    opacity: ${(props) => props.written ? 1 : 0};
+  }
+
+  input {
+    border-bottom: ${(props) => getBorderBottomWidth(props)} solid ${(props) => getBorderBottomColor(props)};
   }
 `
 export const InputLabel = styled.label.attrs<any>(props => ({

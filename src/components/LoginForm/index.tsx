@@ -47,7 +47,6 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     });
 
     useEffect(() => {
-        console.log(formik.isValid, formik.errors);
         if (formik.isValid) {
             setDisabled(false);
         } else {
@@ -58,14 +57,14 @@ const LoginForm: React.FC<Props> = (props: Props) => {
     return (
         <FormContainer>
             <form onSubmit={formik.handleSubmit}>
-                <LoginInputContainer writted={formik.values.id.length !== 0}>
+                <LoginInputContainer written={formik.values.id.length !== 0} error={!!(disabled && formik.errors.id)}>
                     <InputLabel htmlFor="id">아이디</InputLabel>
-                    <Input id="id" name="id" type="email" placeholder="이메일" onChange={formik.handleChange} value={formik.values.id}/>
+                    <Input id="id" name="id" type="text" placeholder="이메일" onChange={formik.handleChange} value={formik.values.id}/>
                     {formik.touched.id && formik.errors.id &&
                     <ValidateMessage message={formik.errors.id}/>
                     }
                 </LoginInputContainer>
-                <LoginInputContainer writted={formik.values.password.length !== 0}>
+                <LoginInputContainer written={formik.values.password.length !== 0} error={!!(disabled && formik.errors.password)}>
                     <InputLabel htmlFor="password">비밀번호</InputLabel>
                     <Input id="password" name="password" type="password" placeholder="비밀번호" onChange={formik.handleChange} value={formik.values.password}/>
                     {formik.touched.password && formik.errors.password &&
