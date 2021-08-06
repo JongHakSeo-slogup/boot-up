@@ -28,7 +28,7 @@ function App() {
                         <TutorialRoute exact path={URLS.TUTORIAL_PAGE} component={Tutorial}/>
                         <AuthRoute exact path={URLS.LOGIN_PAGE} component={Login} />
                         <MainRoute exact path={URLS.MAIN_PAGE} component={Main} />
-                        <Redirect path="*" to={URLS.MAIN_PAGE} />
+                        <Redirect path="*" to={URLS.TUTORIAL_PAGE} />
                     </Switch>
                 </Router>
             </ThemeProvider>

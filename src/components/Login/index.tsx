@@ -15,7 +15,10 @@ const Login: React.FC<Props> = (props: Props) => {
     const history = useHistory();
 
     const lookAround = () => {
-        history.push(URLS.MAIN_PAGE);
+        history.push({
+            pathname: URLS.MAIN_PAGE,
+            state: { isLook: true },
+        });
     }
 
     return (
