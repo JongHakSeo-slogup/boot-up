@@ -29,14 +29,20 @@ const Routers = () => {
         } else if(NotFirstVisit && isFirstPage && !token){
             history.push(URLS.LOGIN_PAGE);
         } else if(NotFirstVisit && isFirstPage && token){
-            history.push(URLS.MAIN_PAGE);
+            getSession().then((res) => {
+                dispatch(userSlice.actions.setUser(res.data.row.user));
+                history.push(URLS.MAIN_PAGE);
+            });
+
         }
     },[])
 
     React.useEffect(() => {
-        if(token && !user_info) {
+        if(token && !user_info && !isFirstPage) {
             getSession().then((res) => {
                 dispatch(userSlice.actions.setUser(res.data.row.user));
+            }).catch((e) => {
+                console.error(e)
             });
         }
     },[]);

@@ -33,12 +33,15 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
     onSubmit: (values) => {
       if (!emailValid) {
         setDisableBtn(true);
+        // window.alert('이메일 형식이 잘못되었습니다.')
         return;
       }
       if (!pwdValid) {
         setDisableBtn(true);
+        // window.alert('비밀번호 형식이 잘못되었습니다.')
         return;
       }
+      setDisableBtn(true);
       Login(values.email, values.pwd)
           .then((res) => {
             setCookie("x-auth-token", res.headers["x-auth-token"]);
@@ -48,15 +51,19 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
             history.push(URLS.MAIN_PAGE);
           })
           .catch((err) => {
-            console.error(err)
-            if(err.rawError){
-              console.log(err.rawError.response.data.rows[0].msg);
-              if(err.rawError.response.data.rows[0].msg === 'wrongIdOrPassword'){
-                window.alert('아이디 또는 비밀번호가 일치하지 않거나 존재하지 않는 아이디 입니다.')
-              }
+            if( axios.isCancel(err) ){
+              console.log(err.message);
+            } else {
+              console.error(err)
+              if(err.rawError){
+                console.log(err.rawError.response.data.rows[0].msg);
+                if(err.rawError.response.data.rows[0].msg === 'wrongIdOrPassword'){
+                  window.alert('아이디 또는 비밀번호가 일치하지 않거나 존재하지 않는 아이디 입니다.')
+                }
+            }
             }
 
-          });
+          }).finally(() => setDisableBtn(false));
 
     },
     validate: (values) => {
@@ -74,6 +81,8 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
    */
   const [emailValid, setEmailValid] = React.useState<boolean>(false);
   const [pwdValid, setPwdValid] = React.useState<boolean>(false);
+  // const [isEmailFocused, setEmailFocused] = React.useState<boolean>(false);
+  // const [isPwdFocused, setPwdFocused] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState<"password" | "text">("password");
   const [disable_btn, setDisableBtn] = React.useState<boolean>(false);
 
@@ -120,8 +129,10 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
             label={emailValid  ? true : false}
             value={formik.values.email}
             auth
+            // onFocus={() => {setEmailFocused(true)}}
+            // onBlur={() => {setEmailFocused(false)}}
           />
-          {!emailValid && formik.values.email && disable_btn? (
+          {!emailValid && formik.values.email && disable_btn ? (
             <>
               <Warn>
                 <Image
@@ -148,6 +159,8 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
               label={pwdValid ? true : false}
               value={formik.values.pwd}
               auth
+              // onFocus={() => {setPwdFocused(true)}}
+              // onBlur={() => {setPwdFocused(false)}}
             />
             <Eye
               src={
