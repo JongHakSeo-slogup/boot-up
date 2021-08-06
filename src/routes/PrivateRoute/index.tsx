@@ -1,10 +1,9 @@
-import {Route} from "react-router";
+import {Redirect, Route} from "react-router";
 import isLogined from "../../utils/isLogined";
-import Login from "../../components/Login";
 
 function PrivateRoute({component: Component, ...rest}: any) {
     return (
-        <Route {...rest} render={props => isLogined() ? <Component /> : <Login />} />
+        <Route {...rest} render={props => isLogined() ? <Component /> : <Redirect to='/' />} />
     )
 };
 
