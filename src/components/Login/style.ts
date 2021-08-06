@@ -52,7 +52,7 @@ const styles = {
         }
       }
     `,
-    JoinLink: styled.a`
+    JoinLink: styled(Link)`
         text-decoration: underline;
     `,
     ButtonWrapper: styled.div`

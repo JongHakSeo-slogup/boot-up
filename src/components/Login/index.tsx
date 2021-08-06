@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
 import URLS from "../../routes/urls";
+import { Link } from "react-router-dom";
 
 function Login() {
     return (
@@ -12,10 +13,10 @@ function Login() {
             <LoginForm />
             <styles.LinkArea>
                 <styles.FindArea>
-                    <a href="/findid">아이디 찾기</a>
-                    <a href="/findpwd">비밀번호 찾기</a>
+                    <Link to="/findid">아이디 찾기</Link>
+                    <Link to="/findpwd">비밀번호 찾기</Link>
                 </styles.FindArea>
-                <styles.JoinLink href={URLS.SIGH_UP}>회원가입</styles.JoinLink>
+                <styles.JoinLink to={URLS.SIGH_UP}>회원가입</styles.JoinLink>
             </styles.LinkArea>
             <styles.ButtonWrapper>
                 <styles.AroundButton to={URLS.HOME}>앱 둘러보기</styles.AroundButton>
