@@ -48,6 +48,7 @@ export const request = (params: RequestParams) => {
     config.headers = {
       ...config.headers,
       ...headers,
+      'x-auth-token': localStorage.getItem(TOKEN) ? localStorage.getItem(TOKEN) : '',
     };
   }
   if (isMultipart) {

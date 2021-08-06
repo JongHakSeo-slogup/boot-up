@@ -22,5 +22,12 @@ export const userSlice = createSlice({
       state.isLoading = false;
       state.user = action.payload;
     },
+    getUserInfo: (state: UserState) => {
+      state.isLoading = true;
+    },
+    getUserInfoSuccess: (state: UserState, action: PayloadAction<User>) => {
+      state.isLoading = false;
+      state.user = action.payload;
+    },
   },
 });

@@ -19,9 +19,12 @@ export function login(id: string, password: string) {
     })
 }
 
-export function getSession() {
+export function getUserInfo() {
     return request({
         method: Method.GET,
-        baseUrl: 'url',
+        baseUrl: LOGIN,
+        headers: {
+            'content-type': 'application/json',
+        },
     });
 }

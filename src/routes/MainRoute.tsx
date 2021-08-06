@@ -1,5 +1,4 @@
 import React from 'react';
-import {hasToken, getUserInfo} from "../utils/user";
 import {isTutorialViewed} from "../utils/tutorial";
 import {Redirect, Route} from "react-router-dom";
 import URLS from "./urls";
