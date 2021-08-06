@@ -59,6 +59,8 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
                 console.log(err.rawError.response.data.rows[0].msg);
                 if(err.rawError.response.data.rows[0].msg === 'wrongIdOrPassword'){
                   window.alert('아이디 또는 비밀번호가 일치하지 않거나 존재하지 않는 아이디 입니다.')
+                } else {
+                  window.alert(err.rawError.response.data.rows[0].msg)
                 }
             }
             }

@@ -4,11 +4,24 @@ import { TitleBox, Title, Explain, DotQueue, Dots, SelectedDot } from './style';
 import Image from '../../elements/Image';
 import Button from "../../elements/Button";
 import {history} from "../../redux/reducers";
+import { useSelector } from "react-redux";
 import URLS, { imageUrl } from "../../routes/urls";
+import {RootState} from "../../redux/store";
 
 export interface Props {}
 
 const Tutorial: React.FC<Props> = (props: Props) => {
+
+    const isLogin = useSelector((state:RootState) => state.user.isLogin);
+
+    const gotoMain = () => {
+        if(isLogin) {
+            history.push(URLS.MAIN_PAGE);
+        } else {
+            history.push(URLS.LOGIN_PAGE);
+        }
+    }
+
     return(
         <React.Fragment>
                 <Container>
@@ -28,7 +41,7 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                         <Dots/>
                         <SelectedDot/>
                     </DotQueue>
-                    <Button onClick={() => {history.push(URLS.LOGIN_PAGE)}} width='320px' height='56px' margin='32px 0px 0px 0px'>카펫 시작하기</Button>
+                    <Button onClick={gotoMain} width='320px' height='56px' margin='32px 0px 0px 0px'>카펫 시작하기</Button>
                 </Container>
         </React.Fragment>
     )
