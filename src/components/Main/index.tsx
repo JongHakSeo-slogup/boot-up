@@ -8,12 +8,12 @@ export interface Props {
 }
 
 const Main: React.FC<Props> = ({ look }: Props) => {
-    const user = useSelector<RootState>(state => state.user.user);
+    const user: any = useSelector<RootState>(state => state.user.user);
     console.log(look, user);
     return (
         <Container>
             {
-                look && !user ? '둘러보는 중입니다' : '안됨'
+                look && !user ? '둘러보는 중입니다' : `${user.row.email}`
             }
         </Container>
     );

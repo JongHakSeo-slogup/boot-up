@@ -14,7 +14,6 @@ import {
 import ValidateMessage from '../ValidateMessage';
 import {useDispatch} from "react-redux";
 import {userSlice} from "../../redux/slices/user";
-import {useHistory} from "react-router";
 
 export interface LoginFormInfo {
     id: string;

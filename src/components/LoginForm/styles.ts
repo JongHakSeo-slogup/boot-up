@@ -15,7 +15,7 @@ const getBorderBottomColor = (props: any) => {
 };
 
 const getBorderBottomWidth = (props: any) => {
-    const { written, error, theme } = props;
+    const { written, error } = props;
 
     switch (true) {
         case error || written:

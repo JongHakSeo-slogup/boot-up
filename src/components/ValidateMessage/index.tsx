@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import errorIcon from '../../imgs/error.png';
 import {Container, Icon, IconFigure, Description} from "./styles";

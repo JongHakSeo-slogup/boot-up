@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route, Redirect, Router} from "react-router-dom";
+import {Switch, Redirect, Router} from "react-router-dom";
 import "./App.css";
 import {Theme} from "./styles/theme";
 import {ThemeProvider} from "styled-components";

@@ -2,7 +2,7 @@ import {all, takeLatest, call, put, getContext} from "redux-saga/effects";
 import {userSlice} from "../slices/user";
 import {login} from "../../apis/account";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {User, UserRequest} from "../../InterfaceAndType/user";
+import {UserRequest} from "../../InterfaceAndType/user";
 import URLS from "../../routes/urls";
 import {USER} from "../../constants/user";
 
