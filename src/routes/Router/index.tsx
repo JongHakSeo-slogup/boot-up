@@ -12,6 +12,7 @@ import Login from "../../components/Login";
 import Signup from "../../components/Signup";
 import Mypage from "../../components/Mypage";
 import URLS from "../urls";
+import NotFound from '../../components/404';
 
 function Router() {
     const isVisited = useRef(localStorage.getItem('carpetVisited'));
@@ -40,6 +41,7 @@ function Router() {
                         <PublicRoute exact path={URLS.HOME} component={Home} />
                         <PublicRoute exact path={URLS.SIGH_UP} component={Signup} restricted />
                         <PrivateRoute exact path={URLS.MY_PAGE} component={Mypage} />
+                        <Route path='/' component={NotFound} />
                     </Switch>
                     : <Tutorial imageName="image_iPhone.png" onClick={onClickStart} />
 
