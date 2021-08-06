@@ -83,8 +83,8 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
    */
   const [emailValid, setEmailValid] = React.useState<boolean>(false);
   const [pwdValid, setPwdValid] = React.useState<boolean>(false);
-  // const [isEmailFocused, setEmailFocused] = React.useState<boolean>(false);
-  // const [isPwdFocused, setPwdFocused] = React.useState<boolean>(false);
+  const [isEmailFocused, setEmailFocused] = React.useState<boolean>(false);
+  const [isPwdFocused, setPwdFocused] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState<"password" | "text">("password");
   const [disable_btn, setDisableBtn] = React.useState<boolean>(false);
 
@@ -128,11 +128,11 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
             name="email"
             placeholder="이메일"
             text="아이디"
-            label={emailValid  ? true : false}
+            label={isEmailFocused  ? true : false}
             value={formik.values.email}
             auth
-            // onFocus={() => {setEmailFocused(true)}}
-            // onBlur={() => {setEmailFocused(false)}}
+            onFocus={() => {setEmailFocused(true)}}
+            onBlur={() => {setEmailFocused(false)}}
           />
           {!emailValid && formik.values.email && disable_btn ? (
             <>
@@ -158,11 +158,11 @@ const LoginFormik: React.FC<Props> = (props: Props) => {
               name='pwd'
               placeholder="비밀번호"
               text="비밀번호"
-              label={pwdValid ? true : false}
+              label={isPwdFocused ? true : false}
               value={formik.values.pwd}
               auth
-              // onFocus={() => {setPwdFocused(true)}}
-              // onBlur={() => {setPwdFocused(false)}}
+              onFocus={() => {setPwdFocused(true)}}
+              onBlur={() => {setPwdFocused(false)}}
             />
             <Eye
               src={
