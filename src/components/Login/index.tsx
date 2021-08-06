@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./style";
 import LoginForm from "../LoginForm";
+import URLS from "../../routes/urls";
 
 function Login() {
     return (
@@ -14,10 +15,10 @@ function Login() {
                     <a href="/findid">아이디 찾기</a>
                     <a href="/findpwd">비밀번호 찾기</a>
                 </styles.FindArea>
-                <styles.JoinLink href="/signup">회원가입</styles.JoinLink>
+                <styles.JoinLink href={URLS.SIGH_UP}>회원가입</styles.JoinLink>
             </styles.LinkArea>
             <styles.ButtonWrapper>
-                <styles.AroundButton to="/home">앱 둘러보기</styles.AroundButton>
+                <styles.AroundButton to={URLS.HOME}>앱 둘러보기</styles.AroundButton>
             </styles.ButtonWrapper>
         </styles.LoginLayout>
     )
