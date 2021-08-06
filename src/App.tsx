@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Tutorial from "./components/Tutorial";
 
 import TutorialRoute from "./routes/TutorialRoute";
-import AuthRoute from "./routes/AuthRoute";
+import LoginRoute from "./routes/LoginRoute";
 import MainRoute from "./routes/MainRoute";
 
 import {sagaHistory} from "./redux/store";
@@ -26,7 +26,7 @@ function App() {
                 <Router history={sagaHistory}>
                     <Switch>
                         <TutorialRoute exact path={URLS.TUTORIAL_PAGE} component={Tutorial}/>
-                        <AuthRoute exact path={URLS.LOGIN_PAGE} component={Login} />
+                        <LoginRoute exact path={URLS.LOGIN_PAGE} component={Login} />
                         <MainRoute exact path={URLS.MAIN_PAGE} component={Main} />
                         <Redirect path="*" to={URLS.TUTORIAL_PAGE} />
                     </Switch>
